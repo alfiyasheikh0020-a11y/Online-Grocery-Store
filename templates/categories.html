@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FreshCart - Categories</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <h1>🛒 FreshCart</h1>
+
+        <nav>
+
+            <a href="/">Home</a>
+
+            <a href="/products">Products</a>
+
+            <a href="/categories">Categories</a>
+
+            <a href="/cart">Cart</a>
+
+            <a href="/orders">My Orders 📦</a>
+
+            <a href="/profile">Profile 👤</a>
+
+        </nav>
+
+    </header>
+
+
+
+    <main>
+
+        <section class="categories-section">
+
+            <h2>
+                Shop by Category 🛍️
+            </h2>
+
+            <p class="categories-subtitle">
+                Explore our grocery categories and find your everyday essentials.
+            </p>
+
+
+            <div class="category-grid">
+
+
+                {% for category in categories %}
+
+
+                <div class="category-card">
+
+
+                    <div class="category-page-icon">
+
+
+                        {% if category[1] == "Fruits" %}
+
+                            🍎
+
+                        {% elif category[1] == "Vegetables" %}
+
+                            🥕
+
+                        {% elif category[1] == "Dairy" %}
+
+                            🥛
+
+                        {% elif category[1] == "Bakery" %}
+
+                            🍞
+
+                        {% elif category[1] == "Snacks" %}
+
+                            🍪
+
+                        {% elif category[1] == "Beverages" %}
+
+                            ☕
+
+                        {% elif category[1] == "Groceries" %}
+
+                            🛒
+
+                        {% endif %}
+
+
+                    </div>
+
+
+                    <h3>
+                        {{ category[1] }}
+                    </h3>
+
+
+                    <p>
+                        Fresh and quality
+                        {{ category[1]|lower }}
+                        products.
+                    </p>
+
+
+                    <a
+                        href="/category/{{ category[0] }}"
+                        class="category-button"
+                    >
+                        View Products →
+                    </a>
+
+
+                </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <footer>
+
+        <h2>
+            🛒 FreshCart
+        </h2>
+
+        <p>
+            Fresh groceries. Simple shopping. 🌿
+        </p>
+
+        <p class="footer-copy">
+            © 2026 FreshCart. All rights reserved.
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

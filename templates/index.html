@@ -1,0 +1,351 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+    <head>
+         <meta charset="UTF-8"> 
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>FreshCart - Online Grocery Store</title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head> 
+<body>
+<!-- HEADER -->
+<header>
+
+    <h1>🛒 FreshCart</h1>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/products">Products</a>
+        <a href="/categories">Categories</a>
+        <a href="/cart">Cart</a>
+        <a href="/orders">My Orders 📦</a>
+        <a href="/profile">Profile 👤</a>
+    </nav>
+
+</header>
+
+
+<main>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+
+        <h2>
+            Fresh groceries, delivered to your door. 🛍️
+        </h2>
+
+        <p>
+            Shop fresh fruits, vegetables, dairy products
+            and everyday essentials from FreshCart.
+        </p>
+
+        <button onclick="window.location.href='/products'">
+            Shop Now 🛒
+        </button>
+
+    </section>
+
+
+    <!-- CATEGORIES SECTION -->
+    <section class="home-categories">
+
+        <div class="home-section-title">
+
+            <h2>Shop by Category</h2>
+
+            <a href="/products">
+                View All →
+            </a>
+
+        </div>
+
+
+        <div class="home-category-grid">
+
+            <div class="home-category-card"
+                 onclick="window.location.href='/products'">
+
+                <div class="category-icon">
+                    🍎
+                </div>
+
+                <h3>Fruits</h3>
+
+                <p>Fresh & juicy</p>
+
+            </div>
+
+
+            <div class="home-category-card"
+                 onclick="window.location.href='/products'">
+
+                <div class="category-icon">
+                    🥦
+                </div>
+
+                <h3>Vegetables</h3>
+
+                <p>Farm fresh</p>
+
+            </div>
+
+
+            <div class="home-category-card"
+                 onclick="window.location.href='/products'">
+
+                <div class="category-icon">
+                    🥛
+                </div>
+
+                <h3>Dairy</h3>
+
+                <p>Daily essentials</p>
+
+            </div>
+
+
+            <div class="home-category-card"
+                 onclick="window.location.href='/products'">
+
+                <div class="category-icon">
+                    🍞
+                </div>
+
+                <h3>Bakery</h3>
+
+                <p>Freshly baked</p>
+
+            </div>
+
+
+            <div class="home-category-card"
+                 onclick="window.location.href='/products'">
+
+                <div class="category-icon">
+                    🍪
+                </div>
+
+                <h3>Snacks</h3>
+
+                <p>Tasty treats</p>
+
+            </div>
+
+
+            <div class="home-category-card"
+                 onclick="window.location.href='/products'">
+
+                <div class="category-icon">
+                    ☕
+                </div>
+
+                <h3>Beverages</h3>
+
+                <p>Drinks & more</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- OFFER SECTION -->
+    <section class="home-offer">
+
+        <div class="offer-content">
+
+            <span>
+                FRESH DEALS
+            </span>
+
+            <h2>
+                Everything you need,
+                all in one cart. 🛒
+            </h2>
+
+            <p>
+                Fresh groceries and everyday essentials
+                at great prices.
+            </p>
+
+            <button onclick="window.location.href='/products'">
+                Explore Products →
+            </button>
+
+        </div>
+
+
+        <div class="home-offer-icon">
+            🛍️
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES SECTION -->
+    <section class="home-features">
+
+        <h2>
+            Why Shop With FreshCart? ⭐
+        </h2>
+
+        <p class="features-subtitle">
+            Simple, convenient and reliable grocery shopping.
+        </p>
+
+
+        <div class="feature-grid">
+
+
+            <div class="feature-card">
+
+                <div>
+                    🥦
+                </div>
+
+                <h3>
+                    Fresh Products
+                </h3>
+
+                <p>
+                    Quality groceries for your everyday needs.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div>
+                    🚚
+                </div>
+
+                <h3>
+                    Easy Shopping
+                </h3>
+
+                <p>
+                    Browse products and add them to your cart easily.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div>
+                    💳
+                </div>
+
+                <h3>
+                    Easy Payments
+                </h3>
+
+                <p>
+                    Choose from multiple payment options.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div>
+                    🛒
+                </div>
+
+                <h3>
+                    Simple Ordering
+                </h3>
+
+                <p>
+                    Place your grocery order in just a few steps.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- STORE STATS -->
+    <section class="home-stats">
+
+
+        <div class="stat-card">
+
+            <h2>
+                {{ product_count }}+
+            </h2>
+
+            <p>
+                Products
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h2>
+                7
+            </h2>
+
+            <p>
+                Categories
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h2>
+                24/7
+            </h2>
+
+            <p>
+                Shopping
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h2>
+                100%
+            </h2>
+
+            <p>
+                Convenient
+            </p>
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <h2>
+        🛒 FreshCart
+    </h2>
+
+    <p>
+        Fresh groceries. Simple shopping. 🌿
+    </p>
+
+    <p class="footer-copy">
+        © 2026 FreshCart. All rights reserved.
+    </p>
+
+</footer>

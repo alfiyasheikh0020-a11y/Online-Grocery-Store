@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FreshCart - My Profile</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <h1>🛒 FreshCart</h1>
+
+        <nav>
+
+            <a href="/">Home</a>
+
+            <a href="/products">Products</a>
+
+            <a href="/categories">Categories</a>
+
+            <a href="/cart">Cart</a>
+
+            <a href="/orders">My Orders 📦</a>
+
+            <a href="/profile">Profile 👤</a>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="profile-section">
+
+            <div class="profile-card">
+
+
+                <div class="profile-icon">
+                    👤
+                </div>
+
+
+                <h2>
+                    My Profile
+                </h2>
+
+
+                <p class="profile-subtitle">
+                    Your FreshCart customer information
+                </p>
+
+
+                {% if customer %}
+
+
+                <div class="profile-details">
+
+
+                    <div class="profile-detail">
+
+                        <span class="detail-icon">
+                            🆔
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Customer ID
+                            </small>
+
+                            <strong>
+                                {{ customer[0] }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-detail">
+
+                        <span class="detail-icon">
+                            👤
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Full Name
+                            </small>
+
+                            <strong>
+                                {{ customer[1] }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-detail">
+
+                        <span class="detail-icon">
+                            📧
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Email Address
+                            </small>
+
+                            <strong>
+                                {{ customer[2] }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-detail">
+
+                        <span class="detail-icon">
+                            📱
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Phone Number
+                            </small>
+
+                            <strong>
+                                {{ customer[3] or "Not provided" }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-detail">
+
+                        <span class="detail-icon">
+                            🏠
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Delivery Address
+                            </small>
+
+                            <strong>
+                                {{ customer[4] or "Not provided" }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <button
+                    type="button"
+                    onclick="window.location.href='/products'"
+                >
+                    Continue Shopping 🛍️
+                </button>
+
+
+                {% else %}
+
+
+                <div class="empty-profile">
+
+                    <p>
+                        No customer profile found.
+                    </p>
+
+                    <button
+                        type="button"
+                        onclick="window.location.href='/products'"
+                    >
+                        Start Shopping 🛍️
+                    </button>
+
+                </div>
+
+
+                {% endif %}
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <h2>
+            🛒 FreshCart
+        </h2>
+
+        <p>
+            Fresh groceries. Simple shopping. 🌿
+        </p>
+
+        <p class="footer-copy">
+            © 2026 FreshCart. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        const customerEmail =
+            localStorage.getItem("customerEmail");
+
+        if (customerEmail) {
+
+            const currentUrl =
+                new URL(window.location.href);
+
+            currentUrl.searchParams.set(
+                "email",
+                customerEmail
+            );
+
+            if (window.location.href !== currentUrl.href) {
+
+                window.location.href =
+                    currentUrl.href;
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FreshCart - Order Successful</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+```
+
+</head>
+
+<body>
+
+```
+<header>
+
+    <h1>🛒 FreshCart</h1>
+
+    <nav>
+
+        <a href="/">Home</a>
+
+        <a href="/products">Products</a>
+
+        <a href="/cart">Cart</a>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+    <section class="success-section">
+
+        <div class="success-card">
+
+            <div class="success-icon">
+                ✅
+            </div>
+
+            <h2>Order Placed Successfully!</h2>
+
+            <p>Thank you for shopping with FreshCart. 🎉</p>
+
+            <p>Your order has been received successfully.</p>
+
+
+            <div class="order-info">
+
+                <h3>Order Details</h3>
+
+                <p id="success-order-id">
+                    Order ID: —
+                </p>
+
+                <p id="success-total">
+                    Total: ₹—
+                </p>
+
+                <p id="success-payment">
+                    Payment Method: —
+                </p>
+
+            </div>
+
+
+            <button onclick="window.location.href='/products'">
+                Continue Shopping 🛍️
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+    const orderId =
+        localStorage.getItem("lastOrderId");
+
+    const orderTotal =
+        localStorage.getItem("lastOrderTotal");
+
+    const paymentMethod =
+        localStorage.getItem("lastPaymentMethod");
+
+
+    if (orderId) {
+
+        document.getElementById("success-order-id").innerText =
+            "Order ID: " + orderId;
+
+    }
+
+
+    if (orderTotal) {
+
+        document.getElementById("success-total").innerText =
+            "Total: ₹" + orderTotal;
+
+    }
+
+
+    if (paymentMethod) {
+
+        document.getElementById("success-payment").innerText =
+            "Payment Method: " + paymentMethod;
+
+    }
+
+</script>
+```
+
+</body>
+
+</html>

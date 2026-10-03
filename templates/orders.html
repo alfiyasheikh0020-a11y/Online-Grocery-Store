@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FreshCart - My Orders</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <h1>🛒 FreshCart</h1>
+
+        <nav>
+
+            <a href="/">Home</a>
+
+            <a href="/products">Products</a>
+
+            <a href="/categories">Categories</a>
+
+            <a href="/cart">Cart</a>
+
+            <a href="/orders">My Orders 📦</a>
+
+            <a href="/profile">Profile 👤</a>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="orders-section">
+
+            <h2>
+                My Orders 📦
+            </h2>
+
+            <p class="orders-subtitle">
+                View your recent FreshCart orders.
+            </p>
+
+
+            {% if orders %}
+
+            <div class="orders-container">
+
+                {% for order in orders %}
+
+                <div class="order-card">
+
+
+                    <div class="order-header">
+
+                        <div>
+
+                            <h3>
+                                Order #{{ order[0] }}
+                            </h3>
+
+                            <p>
+                                Order Date: {{ order[1] }}
+                            </p>
+
+                        </div>
+
+
+                        <span class="order-status">
+                            {{ order[3] }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="order-details">
+
+
+                        <div class="order-detail-item">
+
+                            <span>
+                                💰 Total Amount
+                            </span>
+
+                            <strong>
+                                ₹{{ order[2] }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="order-detail-item">
+
+                            <span>
+                                📦 Status
+                            </span>
+
+                            <strong>
+                                {{ order[3] }}
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <a
+                        href="/order_details/{{ order[0] }}"
+                        class="order-details-button"
+                    >
+                        View Details →
+                    </a>
+
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            {% else %}
+
+            <div class="empty-orders">
+
+                <div class="empty-orders-icon">
+                    📦
+                </div>
+
+                <h3>
+                    No Orders Yet
+                </h3>
+
+                <p>
+                    You haven't placed any orders yet.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='/products'"
+                >
+                    Start Shopping 🛍️
+                </button>
+
+            </div>
+
+            {% endif %}
+
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <h2>
+            🛒 FreshCart
+        </h2>
+
+        <p>
+            Fresh groceries. Simple shopping. 🌿
+        </p>
+
+        <p class="footer-copy">
+            © 2026 FreshCart. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        const customerEmail =
+            localStorage.getItem("customerEmail");
+
+        if (customerEmail) {
+
+            const currentUrl =
+                new URL(window.location.href);
+
+            currentUrl.searchParams.set(
+                "email",
+                customerEmail
+            );
+
+            if (window.location.href !== currentUrl.href) {
+
+                window.location.href =
+                    currentUrl.href;
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

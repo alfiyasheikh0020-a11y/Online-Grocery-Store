@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FreshCart - Order Details</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <h1>🛒 FreshCart</h1>
+
+        <nav>
+
+            <a href="/">Home</a>
+
+            <a href="/products">Products</a>
+
+            <a href="/categories">Categories</a>
+
+            <a href="/cart">Cart</a>
+
+            <a href="/orders">My Orders 📦</a>
+
+            <a href="/profile">Profile 👤</a>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="order-details-section">
+
+            <div class="order-details-card">
+
+
+                <div class="order-details-title">
+
+                    <h2>
+                        Order #{{ order_id }}
+                    </h2>
+
+                    <p>
+                        Order Details 📦
+                    </p>
+
+                </div>
+
+
+                {% if items %}
+
+                <div class="order-items">
+
+                    {% for item in items %}
+
+                    <div class="order-product">
+
+
+                        <div class="order-product-info">
+
+                            <h3>
+                                {{ item[0] }}
+                            </h3>
+
+                            <p>
+                                Price: ₹{{ item[1] }}
+                            </p>
+
+                            <p>
+                                Quantity: {{ item[2] }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="order-product-subtotal">
+
+                            ₹{{ item[3] }}
+
+                        </div>
+
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <div class="order-summary">
+
+                    <span>
+                        Total Amount
+                    </span>
+
+                    <strong>
+                        ₹{{ total }}
+                    </strong>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    onclick="window.location.href='/orders'"
+                >
+                    ← Back to My Orders
+                </button>
+
+
+                {% else %}
+
+                <div class="empty-orders">
+
+                    <div class="empty-orders-icon">
+                        📦
+                    </div>
+
+                    <h3>
+                        Order Not Found
+                    </h3>
+
+                    <p>
+                        We couldn't find the requested order.
+                    </p>
+
+                    <button
+                        type="button"
+                        onclick="window.location.href='/orders'"
+                    >
+                        Back to My Orders
+                    </button>
+
+                </div>
+
+                {% endif %}
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <h2>
+            🛒 FreshCart
+        </h2>
+
+        <p>
+            Fresh groceries. Simple shopping. 🌿
+        </p>
+
+        <p class="footer-copy">
+            © 2026 FreshCart. All rights reserved.
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

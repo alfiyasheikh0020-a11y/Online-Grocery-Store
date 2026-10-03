@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FreshCart - Checkout</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+
+        <h1>🛒 FreshCart</h1>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/products">Products</a>
+            <a href="/categories">Categories</a>
+            <a href="/cart">Cart</a>
+            <a href="/orders">My Orders 📦</a>
+            <a href="/profile">Profile 👤</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="checkout-section">
+
+            <h2>
+                Checkout 🧾
+            </h2>
+
+            <p class="checkout-subtitle">
+                Enter your details and choose your payment method.
+            </p>
+
+
+            <form id="checkout-form" onsubmit="placeOrder(event)">
+
+                <div class="checkout-form">
+
+                    <h3>
+                        Customer Details
+                    </h3>
+
+
+                    <label for="customer-name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customer-name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+
+                    <label for="customer-email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="customer-email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+
+                    <label for="customer-phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="customer-phone"
+                        placeholder="Enter your phone number"
+                        required
+                    >
+
+
+                    <label for="customer-address">
+                        Delivery Address
+                    </label>
+
+                    <textarea
+                        id="customer-address"
+                        placeholder="Enter your complete delivery address"
+                        rows="4"
+                        required
+                    ></textarea>
+
+
+                    <h3>
+                        Payment Method 💳
+                    </h3>
+
+
+                    <div class="payment-options">
+
+                        <label class="payment-option">
+
+                            <input
+                                type="radio"
+                                name="payment_method"
+                                value="UPI"
+                                required
+                            >
+
+                            <span class="payment-icon">
+                                📱
+                            </span>
+
+                            <span>
+                                <strong>UPI</strong>
+                                <small>GPay, PhonePe, Paytm</small>
+                            </span>
+
+                        </label>
+
+
+                        <label class="payment-option">
+
+                            <input
+                                type="radio"
+                                name="payment_method"
+                                value="Card"
+                            >
+
+                            <span class="payment-icon">
+                                💳
+                            </span>
+
+                            <span>
+                                <strong>Debit / Credit Card</strong>
+                                <small>Visa, Mastercard, RuPay</small>
+                            </span>
+
+                        </label>
+
+
+                        <label class="payment-option">
+
+                            <input
+                                type="radio"
+                                name="payment_method"
+                                value="Cash on Delivery"
+                            >
+
+                            <span class="payment-icon">
+                                💵
+                            </span>
+
+                            <span>
+                                <strong>Cash on Delivery</strong>
+                                <small>Pay when your order arrives</small>
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div
+                        id="upi-options"
+                        class="payment-details"
+                        style="display: none;"
+                    >
+
+                        <h4>
+                            Select UPI App
+                        </h4>
+
+
+                        <div class="upi-apps">
+
+                            <label class="upi-app">
+
+                                <input
+                                    type="radio"
+                                    name="upi-app"
+                                    value="Google Pay"
+                                >
+
+                                <span>
+                                    🟢 Google Pay
+                                </span>
+
+                            </label>
+
+
+                            <label class="upi-app">
+
+                                <input
+                                    type="radio"
+                                    name="upi-app"
+                                    value="PhonePe"
+                                >
+
+                                <span>
+                                    🟣 PhonePe
+                                </span>
+
+                            </label>
+
+
+                            <label class="upi-app">
+
+                                <input
+                                    type="radio"
+                                    name="upi-app"
+                                    value="Paytm"
+                                >
+
+                                <span>
+                                    🔵 Paytm
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="card-options"
+                        class="payment-details"
+                        style="display: none;"
+                    >
+
+                        <h4>
+                            Card Details
+                        </h4>
+
+                        <input
+                            type="text"
+                            id="card-number"
+                            placeholder="Card Number"
+                            maxlength="19"
+                        >
+
+                        <div class="card-row">
+
+                            <input
+                                type="text"
+                                id="card-expiry"
+                                placeholder="MM/YY"
+                                maxlength="5"
+                            >
+
+                            <input
+                                type="password"
+                                id="card-cvv"
+                                placeholder="CVV"
+                                maxlength="3"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="cod-options"
+                        class="payment-details"
+                        style="display: none;"
+                    >
+
+                        <p>
+                            💵 You can pay in cash when your order is delivered.
+                        </p>
+
+                    </div>
+
+
+                    <div class="checkout-total-box">
+
+                        <h3 id="checkout-total">
+                            Total: ₹0
+                        </h3>
+
+                    </div>
+
+
+                    <button type="submit">
+                        Place Order 🛍️
+                    </button>
+
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <h2>
+            🛒 FreshCart
+        </h2>
+
+        <p>
+            Fresh groceries. Simple shopping. 🌿
+        </p>
+
+        <p class="footer-copy">
+            © 2026 FreshCart. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+
+    <script>
+
+        const paymentOptions =
+            document.querySelectorAll(
+                'input[name="payment_method"]'
+            );
+
+
+        paymentOptions.forEach(function(radio) {
+
+            radio.addEventListener("change", function() {
+
+                document.getElementById(
+                    "upi-options"
+                ).style.display = "none";
+
+
+                document.getElementById(
+                    "card-options"
+                ).style.display = "none";
+
+
+                document.getElementById(
+                    "cod-options"
+                ).style.display = "none";
+
+
+                if (radio.value === "UPI") {
+
+                    document.getElementById(
+                        "upi-options"
+                    ).style.display = "block";
+
+                }
+
+
+                if (radio.value === "Card") {
+
+                    document.getElementById(
+                        "card-options"
+                    ).style.display = "block";
+
+                }
+
+
+                if (radio.value === "Cash on Delivery") {
+
+                    document.getElementById(
+                        "cod-options"
+                    ).style.display = "block";
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

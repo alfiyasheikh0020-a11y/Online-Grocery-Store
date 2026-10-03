@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FreshCart - Products</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+
+        <h1>🛒 FreshCart</h1>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/products">Products</a>
+            <a href="/categories">Categories</a>
+            <a href="/cart">Cart</a>
+            <a href="/orders">My Orders 📦</a>
+            <a href="/profile">Profile 👤</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="products-section">
+
+            <h2>Our Fresh Products 🛍️</h2>
+
+            <p class="products-subtitle">
+                Choose from our fresh groceries and everyday essentials.
+            </p>
+
+
+            <div class="product-grid">
+
+                {% for product in products %}
+
+                <div class="product-card">
+
+                    <div class="product-icon">
+
+                        {% if product[0] == "Apple" %}
+                            🍎
+                        {% elif product[0] == "Banana" %}
+                            🍌
+                        {% elif product[0] == "Orange" %}
+                            🍊
+                        {% elif product[0] == "Potato" %}
+                            🥔
+                        {% elif product[0] == "Tomato" %}
+                            🍅
+                        {% elif product[0] == "Carrot" %}
+                            🥕
+                        {% elif product[0] == "Milk" %}
+                            🥛
+                        {% elif product[0] == "Butter" %}
+                            🧈
+                        {% elif product[0] == "Cheese" %}
+                            🧀
+                        {% elif product[0] == "Bread" %}
+                            🍞
+                        {% elif product[0] == "Cake" %}
+                            🎂
+                        {% elif product[0] == "Biscuits" %}
+                            🍪
+                        {% elif product[0] == "Chips" %}
+                            🍟
+                        {% elif product[0] == "Tea" %}
+                            🍵
+                        {% elif product[0] == "Coffee" %}
+                            ☕
+                        {% elif product[0] == "Rice" %}
+                            🍚
+                        {% elif product[0] == "Wheat Flour" %}
+                            🌾
+                        {% endif %}
+
+                    </div>
+
+
+                    <h3>
+                        {{ product[0] }}
+                    </h3>
+
+
+                    <p class="price">
+                        ₹{{ product[1] }}
+                    </p>
+
+
+                    {% if product[2] > 0 %}
+
+                    <p class="stock available">
+                        In Stock: {{ product[2] }}
+                    </p>
+
+
+                    <button
+                        type="button"
+                        class="add-to-cart-btn"
+                        data-name="{{ product[0] }}"
+                        data-price="{{ product[1] }}"
+                        data-stock="{{ product[2] }}"
+                    >
+                        Add to Cart 🛒
+                    </button>
+
+
+                    {% else %}
+
+                    <p class="stock out-of-stock">
+                        Out of Stock
+                    </p>
+
+
+                    <button
+                        type="button"
+                        disabled
+                    >
+                        Out of Stock
+                    </button>
+
+                    {% endif %}
+
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <h2>
+            🛒 FreshCart
+        </h2>
+
+        <p>
+            Fresh groceries. Simple shopping. 🌿
+        </p>
+
+        <p class="footer-copy">
+            © 2026 FreshCart. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+
+    <script>
+
+        document.querySelectorAll(".add-to-cart-btn").forEach(function(button) {
+
+            button.addEventListener("click", function() {
+
+                const name = button.dataset.name;
+                const price = Number(button.dataset.price);
+                const stock = Number(button.dataset.stock);
+
+                addToCart(name, price, stock);
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
